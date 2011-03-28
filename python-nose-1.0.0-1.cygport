@@ -1,7 +1,1 @@
-inherit distutils-multi
-
-
-PKG_NAMES="python-nose python3-nose"
-PKG_HINTS="setup setup3"
-python_nose_CONTENTS="usr/bin/nosetests usr/bin/nosetests-${PYTHON_VERSION} ${PYTHON_SITELIB#/} usr/share/"
-python3_nose_CONTENTS="usr/bin/nosetests-${PYTHON3_VERSION} ${PYTHON3_SITELIB#/}"
+inherit python-distutils
