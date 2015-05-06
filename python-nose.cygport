@@ -1,5 +1,8 @@
 inherit python-distutils
 
+NAME="python-nose"
+VERSION=1.1.2
+RELEASE=1
 CATEGORY="Python"
 SUMMARY="Python unittest extension"
 DESCRIPTION="nose extends the test loading and running features of unittest,
