@@ -1,7 +1,7 @@
-inherit python-distutils
+inherit python-wheel
 
 NAME="python-nose"
-VERSION=1.3.6
+VERSION=1.3.7
 RELEASE=1
 CATEGORY="Python"
 SUMMARY="Python unittest extension"
@@ -13,3 +13,26 @@ similar to that of unittest, but also includes captured stdout output
 from failing tests, for easy print-style debugging."
 
 ARCH=noarch
+
+python2_nose_CONTENTS="
+	usr/bin/nosetests-${PYTHON2_VERSION}
+	${PYTHON2_SITELIB#/}
+	usr/share/doc/python2-nose/
+	usr/share/man/man1/nosetests-${PYTHON2_VERSION}.1*
+"
+python3_nose_CONTENTS="
+	usr/bin/nosetests-${PYTHON3_VERSION}
+	${PYTHON3_SITELIB#/}
+	usr/share/doc/python3-nose/
+	usr/share/man/man1/nosetests-${PYTHON3_VERSION}.1*
+"
+
+src_install() {
+	cd ${B}
+	python_wheel_install
+
+	rm ${D}/usr/bin/nosetests
+	# this will be moved to /usr/share/man by cygport
+	cp ${D}/usr/man/man1/nosetests{,-${PYTHON2_VERSION}}.1
+	mv ${D}/usr/man/man1/nosetests{,-${PYTHON3_VERSION}}.1
+}
